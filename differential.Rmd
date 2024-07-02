@@ -34,10 +34,10 @@ library(phaseR)
 
 \onehalfspacing
 
-**Disclaimer: This note contains parts that I learnt from the
-Differential equation course of Rice university in edx.org**\
+**This note contains parts that I learnt from the
+Differential equation course of Rice university in edx.org. The code for rmarkdown can be obtained *https://raw.githubusercontent.com/Roshann-Rai/differential-equation/main/differential.Rmd***
 
-# 1. Differential Equation}
+# 1. Differential Equation
 
 A differential equation of simple form $\frac{dy}{dt} + P(t)y = f(t)$
 explains how the change in one variable (independent variable) affects
@@ -414,4 +414,23 @@ $$\mu = Ke^{\int{p(t)dt}} \tag{4}$$
 where $K=e^k$.\
 If we set the value of $\mu$ in equation 3, we get y,
 $$y = \frac{\int{Ke^{\int{p(t)dt}} f(t)dt}+c}{Ke^{\int{p(t)dt}}} \tag{5}$$
+
+**Example**
+$$y' + \frac{1}{t+1}=2$$
+and $y(0)=0, t \geq 0$\
+We Know,
+$$\mu = e^(\int{p(t)dt})$$
+$$\mu = e^(\int{\frac{1}{1+t}dt})$$
+$$\mu = e^(ln|1+t|)$$
+$$\mu = |1+t|$$
+$$\mu = t+1$$
+We only take positive sign because $t \geq 0$.
+$$(\mu y)' = \mu f(t)$$
+$$(\mu y)' = 2\mu$$
+$$[(1+t)y]'=2(1+t)$$
+$$\int{[(1+t)y]'dt}=\int{2(1+t)dt}$$
+$$(1+t)y=t^2+2t+c$$
+$$y=\frac{t^2+2t}{t+1}+\frac{c}{t+1} \tag{1}$$
+Since, $y(0)=0 so, c = 0 in equation (1)$. Then,
+$$y(t)=\frac{t^2+2t}{t+1} \tag{2}$$
 
