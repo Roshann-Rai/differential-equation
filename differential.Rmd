@@ -334,7 +334,7 @@ A linear differential equation is in the form $y'+p(t)y=f(t)$ which is a first o
 
 \newpage
 
-#2. First order Differential Equation}
+# 2. First order Differential Equation
 
 ## 2.1 First order linear non-homogeneous Equation: Variation of Parameters
 
