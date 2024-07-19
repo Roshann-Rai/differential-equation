@@ -72,7 +72,7 @@
 
 \title{Differential Equation}
 \author{Roshan Rai}
-\date{2024-07-02}
+\date{2024-07-18}
 
 \begin{document}
 \maketitle
@@ -82,7 +82,7 @@
 \textbf{This note contains parts that I learnt from the Differential
 equation course of Rice university in edx.org. The code for rmarkdown
 can be obtained
-\emph{\url{https://raw.githubusercontent.com/Roshann-Rai/differential-equation/main/differential.Rmd}}}
+\href{https://raw.githubusercontent.com/Roshann-Rai/differential-equation/main/differential.Rmd}{\emph{https://raw.githubusercontent.com/Roshann-Rai/differential-equation/main/differential.Rmd}}}
 
 \section{1. Differential Equation}\label{differential-equation}
 
@@ -292,7 +292,8 @@ equation can be \(y'y=cost\). Properties of linear equations are:
 
 \newpage
 
-\#2. First order Differential Equation\}
+\section{2. First order Differential
+Equation}\label{first-order-differential-equation}
 
 \subsection{2.1 First order linear non-homogeneous Equation: Variation
 of
@@ -344,13 +345,43 @@ If we set the value of \(\mu\) in equation 3, we get y,
 \[y = \frac{\int{Ke^{\int{p(t)dt}} f(t)dt}+c}{Ke^{\int{p(t)dt}}} \tag{5}\]
 
 \textbf{Example} \[y' + \frac{1}{t+1}=2\] and \(y(0)=0, t \geq 0\)\\
-We Know, \[\mu = e^(\int{p(t)dt})\] \[\mu = e^(\int{\frac{1}{1+t}dt})\]
-\[\mu = e^(ln|1+t|)\] \[\mu = |1+t|\] \[\mu = t+1\] We only take
+We Know, \[\mu = e^{\int{p(t)dt}}\] \[\mu = e^{\int{\frac{1}{1+t}dt}}\]
+\[\mu = e^{ln|1+t|}\] \[\mu = |1+t|\] \[\mu = t+1\] We only take
 positive sign because \(t \geq 0\). \[(\mu y)' = \mu f(t)\]
 \[(\mu y)' = 2\mu\] \[[(1+t)y]'=2(1+t)\]
 \[\int{[(1+t)y]'dt}=\int{2(1+t)dt}\] \[(1+t)y=t^2+2t+c\]
-\[y=\frac{t^2+2t}{t+1}+\frac{c}{t+1} \tag{1}\] Since,
-\(y(0)=0 so, c = 0 in equation (1)\). Then,
-\[y(t)=\frac{t^2+2t}{t+1} \tag{2}\]
+\[y=\frac{t^2+2t}{t+1}+\frac{c}{t+1} \tag{1}\] Since, \(y(0)=0\) so,
+\(c = 0\) in equation (1). Then, \[y(t)=\frac{t^2+2t}{t+1} \tag{2}\]
+\newpage
+
+\section{3. Second order Differential
+Equation}\label{second-order-differential-equation}
+
+General form of Second order differential equation is in the form
+
+\[
+ay''+by'+cy=f(t)
+\]
+
+\subsection{3.1 With constant
+coefficient}\label{with-constant-coefficient}
+
+To find \(y_H = Basis\) \({y_1, y_2}\) where \(y_1, y_2\) are two
+linearly independent functions. \[y(t)=e^{\lambda t}\]
+\[y'(t)=\lambda e^{\lambda t}\] \[y''(t)=\lambda^2 e^{\lambda t}\] Then,
+\[a\lambda^2 e^{\lambda t} + b\lambda e^{\lambda t} + c e^{\lambda t} = 0\]
+\[e^{\lambda t}(a\lambda^2 +b\lambda + c) = 0\] Since,
+\(e^{\lambda t} \neq 0\) so, \[a\lambda^2 +b\lambda + c= 0\]
+\[\lambda_{1,2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(b^2-4ac>0\) \(\Longrightarrow\) Real distinct roots
+\item
+  \(b^2-4ac=0\) \(\Longrightarrow\) Repeated roots
+\item
+  \(b^2-4ac<0\) \(\Longrightarrow\) Complex Roots
+\end{itemize}
 
 \end{document}

@@ -34,8 +34,10 @@ library(phaseR)
 
 \onehalfspacing
 
-**This note contains parts that I learnt from the
-Differential equation course of Rice university in edx.org. The code for rmarkdown can be obtained *https://raw.githubusercontent.com/Roshann-Rai/differential-equation/main/differential.Rmd***
+**This note contains parts that I learnt from the Differential equation
+course of Rice university in edx.org. The code for rmarkdown can be
+obtained
+[*https://raw.githubusercontent.com/Roshann-Rai/differential-equation/main/differential.Rmd*](https://raw.githubusercontent.com/Roshann-Rai/differential-equation/main/differential.Rmd){.uri}**
 
 # 1. Differential Equation
 
@@ -319,18 +321,31 @@ ggplot(reshaped_data, aes(x = t)) +
 ```
 
 ## 1.6 Picard's Theorem
+
 For $y' = f(t,y)$ with $y(t_0)=y_0$ to have solution:
 
-+ Condition I: f(t,y) should be continuous function[^1] in a neighborhood of $t_0,y_0$.
-+ Condition II: The solution is unique if $\frac{\delta f}{\delta y}$ is also continuous in neighbourhood of this initial condition $t_0$ and $y_0$.\
+-   Condition I: f(t,y) should be continuous function[^1] in a
+    neighborhood of $t_0,y_0$.
+-   Condition II: The solution is unique if $\frac{\delta f}{\delta y}$
+    is also continuous in neighbourhood of this initial condition $t_0$
+    and $y_0$.\
 
-[^1]:A function $f(x)$ is continous at $x=a$ if a. $f(a)$ is defined, b. $\lim_{x \to a} f(x)$ exists and c. $\lim_{x \to a} f(x) = f(a)$ 
+[^1]: A function $f(x)$ is continous at $x=a$ if a. $f(a)$ is defined,
+    b. $\lim_{x \to a} f(x)$ exists and c. $\lim_{x \to a} f(x) = f(a)$
 
 ## 1.7 Linearity vs Non-linearity
-A linear differential equation is in the form $y'+p(t)y=f(t)$ which is a first order linear differential equation. Non-linear differential equation can be $y'y=cost$. Properties of linear equations are:
 
-+ **Superposition principle**: If $y_1$ and $y_2$ are homogeneous solutions, their linear combinations $c_1y_1 + c_2y_3$ is also homogeneous.
-+ **Non homogeneous principle**: General solution for non-homogeneous equation is $y(t) = y_P + y_H$ where $y_P$ is solution for non-homogeneous equation and $y_H$ is solution for homogeneous equation.
+A linear differential equation is in the form $y'+p(t)y=f(t)$ which is a
+first order linear differential equation. Non-linear differential
+equation can be $y'y=cost$. Properties of linear equations are:
+
+-   **Superposition principle**: If $y_1$ and $y_2$ are homogeneous
+    solutions, their linear combinations $c_1y_1 + c_2y_3$ is also
+    homogeneous.
+-   **Non homogeneous principle**: General solution for non-homogeneous
+    equation is $y(t) = y_P + y_H$ where $y_P$ is solution for
+    non-homogeneous equation and $y_H$ is solution for homogeneous
+    equation.
 
 \newpage
 
@@ -338,99 +353,99 @@ A linear differential equation is in the form $y'+p(t)y=f(t)$ which is a first o
 
 ## 2.1 First order linear non-homogeneous Equation: Variation of Parameters
 
-Consider the following first order ODE:
-$$y'+p(t)y=f(t) \tag{1}$$
-For equation (1),
-$$y_H=Ce^{-\int{p(t)dt}} \tag{2}$$
-$$y_p=vy_H \tag{3}$$
+Consider the following first order ODE: $$y'+p(t)y=f(t) \tag{1}$$ For
+equation (1), $$y_H=Ce^{-\int{p(t)dt}} \tag{2}$$ $$y_p=vy_H \tag{3}$$
 Can $v$ be constant?\
-No, $v$ can't be constant because if $v$ is constant then $y_p$ is scalar multiplicative of $y_H$. This won't solve the non-homogeneous equation. $v$ is non-constant function of $t$ i.e. $v(t)$.
+No, $v$ can't be constant because if $v$ is constant then $y_p$ is
+scalar multiplicative of $y_H$. This won't solve the non-homogeneous
+equation. $v$ is non-constant function of $t$ i.e. $v(t)$.
 
-From equation (3),
-$$y_p'=(vy_H)' \longrightarrow v'y_H+vy_H'$$
-So, in equation (1),
-$$v'y_H+vy_H'+p(t)vy_H=f(t)$$
-$$v'y_H+v[y_H'+p(t)y_H]=f(t)$$
-where $y'_H+p(t)y_H=0$
-$$v'y_H=f(t)$$
-$$v'=\frac{f(t)}{y_H}$$
-$$v=\int\frac{f(t)}{y_H}dt \tag{4}$$
-Equation (4) gives $v$.
+From equation (3), $$y_p'=(vy_H)' \longrightarrow v'y_H+vy_H'$$ So, in
+equation (1), $$v'y_H+vy_H'+p(t)vy_H=f(t)$$
+$$v'y_H+v[y_H'+p(t)y_H]=f(t)$$ where $y'_H+p(t)y_H=0$ $$v'y_H=f(t)$$
+$$v'=\frac{f(t)}{y_H}$$ $$v=\int\frac{f(t)}{y_H}dt \tag{4}$$ Equation
+(4) gives $v$.
 
-**Example:**
-$$y'+\frac{1}{1+t}y=2$$
-$$y(0)=0, t\geq0$$
-$$y_H=Ce^{-\int\frac{1}{1+t}dt}$$
-$$y_H=Ce^{-ln|1+t|}$$
-$$y_H=Ce^{ln|1+t|^{-1}}$$
-$$y_H=C|1+t|^{-1}$$
-$$y_H=\frac{C}{1+t} \tag{1}$$
-Here we only take +ve sign because $t\geq0$.
-$$y_P=vy_H$$
-$$v'=\frac{f}{y_H}$$
-$$v'=\frac{f}{\frac{1}{1+t}}$$
-$$v'=2(1+t)$$
-where $f=2$
-$$v=\int{2(1+t)}dt$$
-$$v=2t+t^2+c \tag{2}$$
-Now,
-$$y_P=(2t+t^2+c)y_H$$
-$$y_P=\frac{(t^2+2t+c)}{1+t} \tag{3}$$
-Here, we don't need to write $c$ because we will get the constant from $y_H$.
-General Solution is
-$$y=y_P+y_H$$
-$$y=\frac{2t+t^2}{t+1}+\frac{C}{t+1} \tag{4}$$
-We know, $y(0)=0$ so,
-$$0=\frac{2*0+0^2}{0+1}+\frac{c}{0+1}$$
-$$c=0$$
-Hence, 
-$$y=\frac{2t+t^2}{t+1} \tag{5}$$
-Eqn (5) is case when $t\neq-1$.
+**Example:** $$y'+\frac{1}{1+t}y=2$$ $$y(0)=0, t\geq0$$
+$$y_H=Ce^{-\int\frac{1}{1+t}dt}$$ $$y_H=Ce^{-ln|1+t|}$$
+$$y_H=Ce^{ln|1+t|^{-1}}$$ $$y_H=C|1+t|^{-1}$$
+$$y_H=\frac{C}{1+t} \tag{1}$$ Here we only take +ve sign because
+$t\geq0$. $$y_P=vy_H$$ $$v'=\frac{f}{y_H}$$
+$$v'=\frac{f}{\frac{1}{1+t}}$$ $$v'=2(1+t)$$ where $f=2$
+$$v=\int{2(1+t)}dt$$ $$v=2t+t^2+c \tag{2}$$ Now, $$y_P=(2t+t^2+c)y_H$$
+$$y_P=\frac{(t^2+2t+c)}{1+t} \tag{3}$$ Here, we don't need to write $c$
+because we will get the constant from $y_H$. General Solution is
+$$y=y_P+y_H$$ $$y=\frac{2t+t^2}{t+1}+\frac{C}{t+1} \tag{4}$$ We know,
+$y(0)=0$ so, $$0=\frac{2*0+0^2}{0+1}+\frac{c}{0+1}$$ $$c=0$$ Hence,
+$$y=\frac{2t+t^2}{t+1} \tag{5}$$ Eqn (5) is case when $t\neq-1$.
 \newpage
 
 ## 2.2 First order linear non-homogeneous equation: Integrating Factors
-Consider the following
-$$y'+p(t)y=f(t) \tag{1}$$
-Multiply equation (1) by $\mu$,
-$$\mu y'+p(t)y\mu=f(t)\mu$$
-Assume, $\mu p(t) = \mu'$\
-Now,
-$$\mu y'+\mu' y=\mu f(t)$$
-$$(\mu y)'=\mu f(t)$$
-$$\int{(\mu y)'dt}=\int{\mu f(t)dt}$$
-$$\mu y +c = \int{\mu f(t)dt}$$
-$$y = \frac{\int{\mu f(t)dt}-c}{\mu} \tag{2}$$
-In eqn (2), since c is unknown constant, we change the sign -ve to +ve.
-$$y = \frac{\int{\mu f(t)dt}+c}{\mu} \tag{3}$$
-From our assumption,
-$$\mu p(t)=\mu' \longrightarrow p(t)=\frac{\mu'}{\mu}$$
-On right hand side, it is simply the natural log of $\mu$. So,
-$$p(t)=(ln\mu)'$$
-$$\int{p(t)dt}=\int{(ln\mu)' dt}$$
-$$\int{p(t)dt+k}=\ln\mu$$
-$$\mu = e^{\int{p(t)dt}+k}$$
-$$\mu = e^ke^{\int{p(t)dt}}$$
-$$\mu = Ke^{\int{p(t)dt}} \tag{4}$$
-where $K=e^k$.\
+
+Consider the following $$y'+p(t)y=f(t) \tag{1}$$ Multiply equation (1)
+by $\mu$, $$\mu y'+p(t)y\mu=f(t)\mu$$ Assume, $\mu p(t) = \mu'$\
+Now, $$\mu y'+\mu' y=\mu f(t)$$ $$(\mu y)'=\mu f(t)$$
+$$\int{(\mu y)'dt}=\int{\mu f(t)dt}$$ $$\mu y +c = \int{\mu f(t)dt}$$
+$$y = \frac{\int{\mu f(t)dt}-c}{\mu} \tag{2}$$ In eqn (2), since c is
+unknown constant, we change the sign -ve to +ve.
+$$y = \frac{\int{\mu f(t)dt}+c}{\mu} \tag{3}$$ From our assumption,
+$$\mu p(t)=\mu' \longrightarrow p(t)=\frac{\mu'}{\mu}$$ On right hand
+side, it is simply the natural log of $\mu$. So, $$p(t)=(ln\mu)'$$
+$$\int{p(t)dt}=\int{(ln\mu)' dt}$$ $$\int{p(t)dt+k}=\ln\mu$$
+$$\mu = e^{\int{p(t)dt}+k}$$ $$\mu = e^ke^{\int{p(t)dt}}$$
+$$\mu = Ke^{\int{p(t)dt}} \tag{4}$$ where $K=e^k$.\
 If we set the value of $\mu$ in equation 3, we get y,
 $$y = \frac{\int{Ke^{\int{p(t)dt}} f(t)dt}+c}{Ke^{\int{p(t)dt}}} \tag{5}$$
 
-**Example**
-$$y' + \frac{1}{t+1}=2$$
-and $y(0)=0, t \geq 0$\
-We Know,
-$$\mu = e^(\int{p(t)dt})$$
-$$\mu = e^(\int{\frac{1}{1+t}dt})$$
-$$\mu = e^(ln|1+t|)$$
-$$\mu = |1+t|$$
-$$\mu = t+1$$
-We only take positive sign because $t \geq 0$.
-$$(\mu y)' = \mu f(t)$$
-$$(\mu y)' = 2\mu$$
-$$[(1+t)y]'=2(1+t)$$
-$$\int{[(1+t)y]'dt}=\int{2(1+t)dt}$$
-$$(1+t)y=t^2+2t+c$$
-$$y=\frac{t^2+2t}{t+1}+\frac{c}{t+1} \tag{1}$$
-Since, $y(0)=0 so, c = 0 in equation (1)$. Then,
+**Example** $$y' + \frac{1}{t+1}=2$$ and $y(0)=0, t \geq 0$\
+We Know, $$\mu = e^{\int{p(t)dt}}$$ $$\mu = e^{\int{\frac{1}{1+t}dt}}$$
+$$\mu = e^{ln|1+t|}$$ $$\mu = |1+t|$$ $$\mu = t+1$$ We only take
+positive sign because $t \geq 0$. $$(\mu y)' = \mu f(t)$$
+$$(\mu y)' = 2\mu$$ $$[(1+t)y]'=2(1+t)$$
+$$\int{[(1+t)y]'dt}=\int{2(1+t)dt}$$ $$(1+t)y=t^2+2t+c$$
+$$y=\frac{t^2+2t}{t+1}+\frac{c}{t+1} \tag{1}$$ Since,
+$y(0)=0$ so, $c = 0$ in equation (1). Then,
 $$y(t)=\frac{t^2+2t}{t+1} \tag{2}$$
+\newpage
+
+# 3. Second order Differential Equation
+
+General form of Second order differential equation is in the form
+
+$$
+ay''+by'+cy=f(t)
+$$
+
+## 3.1 With constant coefficient
+
+To find $y_H = Basis$ ${y_1, y_2}$ where $y_1, y_2$ are two linearly independent functions.
+$$y(t)=e^{\lambda t}$$
+$$y'(t)=\lambda e^{\lambda t}$$
+$$y''(t)=\lambda^2 e^{\lambda t}$$
+Then,
+$$a\lambda^2 e^{\lambda t} + b\lambda e^{\lambda t} + c e^{\lambda t} = 0$$
+$$e^{\lambda t}(a\lambda^2 +b\lambda + c) = 0$$
+Since, $e^{\lambda t} \neq 0$ so,
+$$a\lambda^2 +b\lambda + c= 0$$
+$$\lambda_{1,2} = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+
++ $b^2-4ac>0$ $\Longrightarrow$ Real distinct roots
++ $b^2-4ac=0$ $\Longrightarrow$ Repeated roots
++ $b^2-4ac<0$ $\Longrightarrow$ Complex Roots
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
