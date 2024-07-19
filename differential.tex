@@ -58,6 +58,7 @@
 \usepackage{setspace}
 \usepackage{float}
 \usepackage{subfig}
+\usepackage{xcolor}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -72,7 +73,7 @@
 
 \title{Differential Equation}
 \author{Roshan Rai}
-\date{2024-07-18}
+\date{2024-07-19}
 
 \begin{document}
 \maketitle
@@ -158,7 +159,7 @@ i.e.~\(f'(x)<0\).
 
 Differential equation is separable if \(y'=f(t)g(y)\).\\
 
-\textbf{Example:} \[\frac{dy}{dt} = 3t^2(1+y)\]
+\textbf{\textcolor{blue}{Example:}} \[\frac{dy}{dt} = 3t^2(1+y)\]
 
 \[
 \frac{1}{1+y}dy = 3t^2dt \tag{1}
@@ -204,7 +205,7 @@ a. If \(C = 0\), \(y=-1\) is equilibrium solution.
 
 b. If \(C \neq 0\), it gives all other possible solutions.
 
-\textbf{Example:}
+\textbf{\textcolor{blue}{Example:}}
 
 \[
 \frac{dy}{dt}=\frac{3t^2+1}{1+2y}
@@ -312,9 +313,9 @@ equation (1), \[v'y_H+vy_H'+p(t)vy_H=f(t)\]
 \[v'=\frac{f(t)}{y_H}\] \[v=\int\frac{f(t)}{y_H}dt \tag{4}\] Equation
 (4) gives \(v\).
 
-\textbf{Example:} \[y'+\frac{1}{1+t}y=2\] \[y(0)=0, t\geq0\]
-\[y_H=Ce^{-\int\frac{1}{1+t}dt}\] \[y_H=Ce^{-ln|1+t|}\]
-\[y_H=Ce^{ln|1+t|^{-1}}\] \[y_H=C|1+t|^{-1}\]
+\textbf{\textcolor{blue}{Example:}} \[y'+\frac{1}{1+t}y=2\]
+\[y(0)=0, t\geq0\] \[y_H=Ce^{-\int\frac{1}{1+t}dt}\]
+\[y_H=Ce^{-ln|1+t|}\] \[y_H=Ce^{ln|1+t|^{-1}}\] \[y_H=C|1+t|^{-1}\]
 \[y_H=\frac{C}{1+t} \tag{1}\] Here we only take +ve sign because
 \(t\geq0\). \[y_P=vy_H\] \[v'=\frac{f}{y_H}\]
 \[v'=\frac{f}{\frac{1}{1+t}}\] \[v'=2(1+t)\] where \(f=2\)
@@ -344,7 +345,8 @@ side, it is simply the natural log of \(\mu\). So, \[p(t)=(ln\mu)'\]
 If we set the value of \(\mu\) in equation 3, we get y,
 \[y = \frac{\int{Ke^{\int{p(t)dt}} f(t)dt}+c}{Ke^{\int{p(t)dt}}} \tag{5}\]
 
-\textbf{Example} \[y' + \frac{1}{t+1}=2\] and \(y(0)=0, t \geq 0\)\\
+\textbf{\textcolor{blue}{Example}} \[y' + \frac{1}{t+1}=2\] and
+\(y(0)=0, t \geq 0\)\\
 We Know, \[\mu = e^{\int{p(t)dt}}\] \[\mu = e^{\int{\frac{1}{1+t}dt}}\]
 \[\mu = e^{ln|1+t|}\] \[\mu = |1+t|\] \[\mu = t+1\] We only take
 positive sign because \(t \geq 0\). \[(\mu y)' = \mu f(t)\]
@@ -383,5 +385,50 @@ linearly independent functions. \[y(t)=e^{\lambda t}\]
 \item
   \(b^2-4ac<0\) \(\Longrightarrow\) Complex Roots
 \end{itemize}
+
+\textbf{\textcolor{blue}{Example}:} \[y"+5y'+6y=0\] Consider
+\(y(t)=e^{\lambda t}\), then, \[\lambda^2+5\lambda+6=0\]
+\[\lambda_{1,2}=\frac{-5 \pm \sqrt{25-4*6}}{2}\] \[\lambda_{1,2}=-3,-2\]
+So, \(y_1 = e^{-3t}\) and \(y_2 = e^{-2t}\)
+
+\(y_H =\) span \((y_1, y_2)\) for which
+\textcolor{red}{linear independency should be treated}
+
+\textbf{\textcolor{blue}{Example:}} \[y''+4y'+4y=0\]
+\[\lambda^2+4\lambda+4=0\]
+
+\[\lambda_{1,2}=\frac{-4 \pm \sqrt{4^2-4*4}}{2}\] \[\lambda_{1,2} = -2\]
+It is a \textcolor{red}{case of Repeated Real roots}.
+
+\(y_1=e^{-2t}\) and \(y_2=?\)
+
+For repeated real roots, we us \textcolor{red}{variation of parameter}
+
+\[y_2=vy_1 \tag{1}\] \textcolor{red}{Can v be constant?}
+
+V is not constant. We want to generate \(y_H\) that is coming from
+linearly independent solution so v is function of t i.e.~\(v(t)\).
+
+\[y_2'=v'y_1+y_1'v\] \[y_2''=v'y_1+y_1'v'+y_1"v+v'y_1'\]
+\(y_1=e^{-2t}\), \(y_1'=-2e^{-2t}\) and \(y_1''=4e^{-2t}\) So,
+\[y''+4y'+4y=0\]
+\[v''e^{-2t}-2v'e^{-2t}+4ve^{-2t}-2v'e^{-2t}+4(v'e^{-2t}-2ve^{-2t})+4ve^{-2t}=0\]
+\[v''e^{-2t}=0\] Since, \(e^{-2t} \neq 0\), \(v''=0\). If \(v = at+b\),
+\(y_2=vy_1 =(at+b)y_1\). Here \(by_1\) gives dependent piece so, we
+don't need b. For a, when span of \(y_1\) and \(y_2\) are taken all the
+linear combination of \(y_1\) and \(y_2\) are handled by constant. So,
+\(v(t) = t\).
+
+\textbf{\textcolor{blue}{Example:}} \[y''+2y'+4y=0\]
+\[\lambda^2+2 \lambda + 4 = 0\]
+\[\lambda_{1,2} = \frac{-2 \pm \sqrt{4-4*4}}{2}\]
+\[\lambda_{1,2}=-1 \pm \sqrt{3}i\] \[y(t)=e^{\lambda t}\]
+\[y(t)=e^{(-1 \pm \sqrt{3}i)t}\] \[y(t)=e^{-t}e^{\sqrt{3}ti} \tag{1}\]
+
+\begin{figure}
+\centering
+\includegraphics{differential_files/figure-latex/difference5-1.pdf}
+\caption{Complex Exponential Function \(e^{iθ}\)}
+\end{figure}
 
 \end{document}
