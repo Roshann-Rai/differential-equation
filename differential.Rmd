@@ -517,6 +517,16 @@ ggplot(complex_plane) +
            label = "i", parse = TRUE, size = 4) 
 ```
 
+$$Z(t)=e^{t}e^{\sqrt3ti}$$
+$$
+Z(t)=e^{-t}(cos(\sqrt{3}t)+isin(\sqrt{3}t) \tag{2}
+$$
+If we take -ve sign,
+$$
+Z(t)=e^{-t}(cos(-\sqrt{3}t)+isin(-\sqrt{3}t)
+$$
+$$Z(t)=e^{-t}(cos(\sqrt{3}t)-isin(\sqrt{3}t) \tag{3}$$
+Equation (3) is the conjugate of equation (2).
 
 
 
