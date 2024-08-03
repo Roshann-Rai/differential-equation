@@ -59,6 +59,7 @@
 \usepackage{float}
 \usepackage{subfig}
 \usepackage{xcolor}
+\usepackage{amsmath}
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
@@ -73,7 +74,7 @@
 
 \title{Differential Equation}
 \author{Roshan Rai}
-\date{2024-07-21}
+\date{2024-08-03}
 
 \begin{document}
 \maketitle
@@ -155,7 +156,7 @@ i.e.~\(f'(x)<0\).
 \begin{figure}
 \subfloat[Convex function (Concave upward)\label{fig:difference3-1}]{\includegraphics[width=.49\linewidth]{differential_files/figure-latex/difference3-1} }\subfloat[Concave function (Concave downward)\label{fig:difference3-2}]{\includegraphics[width=.49\linewidth]{differential_files/figure-latex/difference3-2} }\end{figure}
 
-\subsection{1.5 Separable equations}\label{separable-equations}
+\subsection{1 Separable equations}\label{separable-equations}
 
 Differential equation is separable if \(y'=f(t)g(y)\).\\
 
@@ -325,6 +326,13 @@ equation (1), \[v'y_H+vy_H'+p(t)vy_H=f(t)\]
 \[y=y_P+y_H\] \[y=\frac{2t+t^2}{t+1}+\frac{C}{t+1} \tag{4}\] We know,
 \(y(0)=0\) so, \[0=\frac{2*0+0^2}{0+1}+\frac{c}{0+1}\] \[c=0\] Hence,
 \[y=\frac{2t+t^2}{t+1} \tag{5}\] Eqn (5) is case when \(t\neq-1\).
+
+\begin{figure}
+\centering
+\includegraphics{differential_files/figure-latex/difference5-1.pdf}
+\caption{Plot of \(y=(2t+t^2)/(t+1)\)}
+\end{figure}
+
 \newpage
 
 \subsection{2.2 First order linear non-homogeneous equation: Integrating
@@ -354,6 +362,7 @@ positive sign because \(t \geq 0\). \[(\mu y)' = \mu f(t)\]
 \[\int{[(1+t)y]'dt}=\int{2(1+t)dt}\] \[(1+t)y=t^2+2t+c\]
 \[y=\frac{t^2+2t}{t+1}+\frac{c}{t+1} \tag{1}\] Since, \(y(0)=0\) so,
 \(c = 0\) in equation (1). Then, \[y(t)=\frac{t^2+2t}{t+1} \tag{2}\]
+
 \newpage
 
 \section{3. Second order Differential
@@ -365,8 +374,8 @@ General form of Second order differential equation is in the form
 ay''+by'+cy=f(t)
 \]
 
-\subsection{3.1 With constant
-coefficient}\label{with-constant-coefficient}
+\subsection{3.1 Homogenous equation with constant
+coefficient}\label{homogenous-equation-with-constant-coefficient}
 
 To find \(y_H = Basis\) \({y_1, y_2}\) where \(y_1, y_2\) are two
 linearly independent functions. \[y(t)=e^{\lambda t}\]
@@ -422,20 +431,96 @@ linear combination of \(y_1\) and \(y_2\) are handled by constant. So,
 \textbf{\textcolor{blue}{Example:}} \[y''+2y'+4y=0\]
 \[\lambda^2+2 \lambda + 4 = 0\]
 \[\lambda_{1,2} = \frac{-2 \pm \sqrt{4-4*4}}{2}\]
-\[\lambda_{1,2}=-1 \pm \sqrt{3}i\] \[y(t)=e^{\lambda t}\]
-\[y(t)=e^{(-1 \pm \sqrt{3}i)t}\] \[y(t)=e^{-t}e^{\sqrt{3}ti} \tag{1}\]
+\[\lambda_{1,2}=-1 \pm \sqrt{3}i\]
+\[y(t)=C_1e^{(-1 - \sqrt{3}i)t}+C_2e^{(-1 + \sqrt{3}i)t}\]
+\[y(t)=C_1e^{-t}e^{- \sqrt{3}it}+C_2e^{-t}e^{\sqrt{3}it}\]
 
 \begin{figure}
 \centering
-\includegraphics{differential_files/figure-latex/difference5-1.pdf}
+\includegraphics{differential_files/figure-latex/difference6-1.pdf}
 \caption{Complex Exponential Function \(e^{iθ}\)}
 \end{figure}
 
-\[Z(t)=e^{t}e^{\sqrt3ti}\] \[
-Z(t)=e^{-t}(cos(\sqrt{3}t)+isin(\sqrt{3}t) \tag{2}
-\] If we we -ve sign, \[
-Z(t)=e^{-t}(cos(-\sqrt{3}t)+isin(-\sqrt{3}t)
-\] \[Z(t)=e^{-t}(cos(\sqrt{3}t)-isin(\sqrt{3}t) \tag{3}\] Equation (3)
-is the conjugate of equation (2).
+\[y(t)=e^{-t}(C_1e^{- \sqrt{3}it}+C_2e^{\sqrt{3}it})\]
+\[y(t)=e^{-t}[C_1(cos(-\sqrt{3}t)+sin(-\sqrt{3}t))+C_2(cos(\sqrt{3}t)+sin(\sqrt{3}t))]\]
+\[
+y(t)=e^{-t}[C_1(cos(\sqrt{3}t)-sin(\sqrt{3}t))+C_2(cos(\sqrt{3}t)+sin(\sqrt{3}t))]
+\] \[
+y(t)=e^{-t}[C_1cos(\sqrt{3}t)-C_1sin(\sqrt{3}t))+C_2cos(\sqrt{3}t)+C_2sin(\sqrt{3}t)]
+\] \[y(t)=e^{-t}[(C_1+C_2)cos(\sqrt{3}t)+(C_2-C_1)sin(\sqrt{3}t)]\] \[
+y(t)=e^{-t}[C_3cos(\sqrt{3}t)+C_4sin(\sqrt{3}t)] \tag{2}
+\] \includegraphics{differential_files/figure-latex/difference7-1.pdf}
+\newpage
+
+\section{4.Linear Independency of
+Functions}\label{linear-independency-of-functions}
+
+\textcolor{blue}{Theorem:} A set of functions
+\(\{f_1,f_2,.........,f_n\}\) is linearly independent set if there is no
+linear combination functions i.e \(=0\) for all \(t \in I\).
+\(\{f_1,f_2,.........,f_n\}\) is linearly dependent such that
+\(c_1f_1+..........+c_nf_n=0\) i.e.~satisfy
+\textcolor{red}{non-trivial solution} for some \(t \in I\).
+
+Taking derivative, \(c_1f_n'+.............+c_nf_n'=0\) which indicates
+that some of the functions will vanish i.e.~some will be equal to 0. But
+as long as O is included in function set, it will be linearly dependent.
+When we derivative a function equal to 0, the linear dependency is still
+preserved for some \(t \in I\).
+\[c_1f_1^{n-1}+.............+c_nf_n^{n-1}=0\] gives us non-trivial
+expression assuming \(c_1,......,c_n \neq 0\) or
+\(f_1,.........,f_n \neq 0\).
+
+If we take derivative then \(c_1f_1'+............+c_nf_n'=0\). Some of
+the functions will vanish i.e.~some will be equal to 0. But as long as 0
+is included in function set, it will be linearly dependent
+i.e.~\(\{f_1,...........,f_n, 0\}\). If we take derivative of a function
+equal to 0, the linear dependency is still preserved for some
+\(t \in I\) i.e.~\(c_1f_1^{(n-1)}+..........+c_nf_n^{(n-1)}=0\) gives us
+non-trivial expression assuming \(c_1,.......,c_n \neq 0\) or
+\(f_1,.......,f_n \neq 0\). \[
+\begin{bmatrix}
+    f_{1} &\dots & f_{n} \\
+    f_{1}' & \dots & f_{n}' \\
+    \vdots & \vdots & \vdots \\
+    f_{1}^{(n-1)} & \dots & f_{n}^{(n-1)}
+\end{bmatrix}
+\begin{bmatrix}
+    c_{1} \\
+    \vdots \\
+    \vdots \\
+    c_{n}
+\end{bmatrix}
+=
+\begin{bmatrix}
+    0 \\
+    \vdots \\
+    \vdots \\
+   0
+\end{bmatrix}
+\]
+\textcolor{red}{For any linearly dependent set, derivatives up to any degree will also be linearly dependent.}
+
+If \(\{f_1,...........,f_n\}\) is linearly dependent set then
+\textcolor{red}{Wronskian of} \(\{f_1,........,f_n\}\) is equal to 0
+i.e.~\(W[f_1,.........,f_n]=0\). So, \[
+\begin{vmatrix}
+    f_{1} &\dots & f_{n} \\
+    f_{1}' & \dots & f_{n}' \\
+    \vdots & \vdots & \vdots \\
+    f_{1}^{(n-1)} & \dots & f_{n}^{(n-1)}
+\end{vmatrix}
+=
+0
+\]
+
+\textcolor{blue}{Theorem:} If \(\{y_1,.......,y_n\}\) are solutions to
+\(n^{th}\) order linear differential equation and
+\(W[y_1,........,y_n]=0\) for some \(t \in I\) then
+\(\{y_1,........,y_n\}\) solutions are linearly dependent.
+
+\newpage
+
+\subsection{3.2 Non-Homogenous Equation}\label{non-homogenous-equation}
 
 \end{document}
