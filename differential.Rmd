@@ -562,17 +562,20 @@ c_4 <- 4
 i <- c_3*cos(sqrt(3)*t)+c_4*sin(sqrt(3)*t)
 y_t <- exp(-t)*i
 df <- data.frame(t=t, y=y_t)
+caption_text <- bquote(C[3] == .(c_3) ~ "," ~ C[4] == .(c_4))
 ggplot(df, aes(x=t,y=y)) +
   geom_smooth(color="blue", se = FALSE, linewidth=1) +
   geom_vline(aes(xintercept = 0), linetype = "dashed") +
   geom_hline(aes(yintercept = 0), linetype = "dashed") +
   annotate("text", fontface = "bold", x = 2.78, y = 1.7,
            label = "y == e^{-t} * (C[3] * cos(sqrt(3) * t) + C[4] * sin(sqrt(3) * t))", parse = TRUE, size = 4) +
-  theme_minimal()
+ labs(caption = caption_text) +
+  theme_minimal() 
+  
 ```
 \newpage
 
-# 4.Linear Independency of Functions
+## Additinal note: Linear Independency of Functions
 \textcolor{blue}{Theorem:} A set of functions $\{f_1,f_2,.........,f_n\}$ is linearly independent set if there is no linear combination functions i.e $=0$ for all $t \in I$. $\{f_1,f_2,.........,f_n\}$ is linearly dependent such that $c_1f_1+..........+c_nf_n=0$ i.e. satisfy \textcolor{red}{non-trivial solution} for some $t \in I$.
 
 Taking derivative, $c_1f_n'+.............+c_nf_n'=0$ which indicates that some of the functions will vanish i.e. some will be equal to 0. But as long as O is included in function set, it will be linearly dependent. When we derivative a function equal to 0, the linear dependency is still preserved for some $t \in I$.
@@ -619,11 +622,183 @@ If $\{f_1,...........,f_n\}$ is linearly dependent set then \textcolor{red}{Wron
 
 \newpage
 
-## 3.2 Non-Homogenous Equation
+## 3.2 Non-Homogenous Equation linear Differential Equation
 
+It is of form
 
+$$
+ay''+by'+cy=f(t)
+$$
+It can be solved using **undertermined coefficient** or **variation of parameters** method. Undertermined coefficients can be used to solve (i) higher order differential equations, (ii) differential equation with constant coefficients, (iii) f(t) when it is polynomials, exponentials, sine and cosine functions. Variation of paraments can be used for (i) 2nd order differential equations, (ii) any coefficients: variable or constant, (iii) for any f(t).
 
+Using Variation of parameters
+$$
+y''+p(t)y'+q(t)y=f(t)
+$$
+We need to find basis functions that generate $y_H$. Let's say they are $y_1$ and $y_2$ so, $y_H={y_1, y_2}$ where $y_1$ and $y_2$ are linearly independent. Hence, $W[y_1, y_2] \neq 0$.
+$$
+y_p = v_1y_1+v_2y_2
+$$
+where $v_1$ and $v_2$ are functions of t. At least one should be non constant function.
 
+$$
+v_1'=\frac{-y_2f}{W[y_1,y_2]}
+$$
+
+$$
+v_2'=\frac{y_1f}{W[y_1,y_2]}
+$$
+
+**\textcolor{blue}{Example:}**
+$$
+y''-y'-2y=5e^{2t}
+$$
+
+Let's find $y_H$ first. The homogeneous equation is
+$$
+y''-y'-2y=0
+$$
+Assuming, $y(t)=e^{\lambda t}$ we get,
+$$
+\lambda^2-\lambda-2=0
+$$
+So, $\lambda _1 = 2$ and $\lambda _2 = -1$
+
+$$
+y_H = C_1e^{2t}+C_2e^{-t} \tag{1}
+$$
+For particular solution $y_p$, assume $y_p = Ate^{2t}$.
+
+$$
+y'=Ae^{2t}+2Ate^{2t}
+$$
+
+$$
+y''=2Ae^{2t}+2Ae^{2t}+4Ate^{2t} =4Ae^{2t}+4Ate^{2t}
+$$
+
+So, 
+$$
+4Ae^{2t}+4Ate^{2t}-(Ae^{2t}+2Ate^{2t})-2Ate^{2t}=5e^{2t}
+$$
+
+$$
+3A=5
+$$
+
+$$
+A=\frac{5}{3}
+$$
+
+So,
+$$
+y_p = \frac{5te^{2t}}{3} \tag{2}
+$$
+
+$$
+y = \frac{5te^{2t}}{3}+C_1e^{2t}+C_2e^{-t} \tag{3}
+$$
+Equation (3) is the solution to the differential equation.
+
+```{r difference8, echo = F, warning=F, message=F, results = "hide", fig.keep='last', fig.cap = "Plot of $y(t)=(5te^{2t})/3+C_1e^{2t}+C_2e^{-t}$", fig.pos = "h", fig.width=6, fig.height=4.1}
+t <- seq(0,4, by=0.1)
+c_1 <- 0.1
+c_2 <- 0.7
+y <- (5*t*exp(2*t))/(3)+c_1*exp(2*t)+c_2*exp(-t)
+df <- data.frame(t=t, y=y)
+caption_text <- bquote(C[1] == .(c_1) ~ "," ~ C[2] == .(c_2))
+
+ggplot(df, aes(x = t, y = y)) +
+  geom_smooth(color = "blue", se = FALSE, linewidth = 1) +
+  geom_vline(aes(xintercept = 0), linetype = "dashed") +
+  geom_hline(aes(yintercept = 0), linetype = "dashed") +
+  labs(caption = caption_text) +
+  theme_minimal()
+```
+\newpage
+**\textcolor{blue}{Example:}**
+$$
+y''-2y'+y=\frac{e^t}{1+t^2} \tag{1}
+$$
+For $y_H$, assume $y(t)=e^{\lambda t}$. Then,
+$$
+\lambda ^2-2 \lambda + 1 = 0
+$$
+So, $\lambda _1, \lambda _2=1$. Hence, $y_1=e^t$ and $y_2=te^t$.
+$$
+y_H=C_1e^t+C_2te^t \tag{2}
+$$
+
+For $y_p$, $y_p = v_1y_1+v_2y_2$.
+$$
+v_1'=\frac{-\frac{e^t}{1+t^2}.te^t}{W[e^t,te^t]} \tag{3}
+$$
+
+$$
+v_2'=\frac{\frac{e^t}{1+t^2}.e^t}{W[e^t,te^t]} \tag{4}
+$$
+\[
+    W[e^t,te^t]
+=
+\begin{bmatrix}
+   e^t & te^t \\
+   e^t & e^t+te^t \\
+\end{bmatrix}
+\]
+
+$$
+W[e^t, te^t]=e^{2t}+te^{2t}-te^{2t} =e^{2t}
+$$
+So,
+$$
+v_1'=\frac{-\frac{e^t}{1+t^2}.te^t}{e^{2t}}
+$$
+$$
+v_1'=-\frac{e^t}{1+t^2}
+$$
+$$
+v_1=\int-\frac{e^t}{1+t^2}dt
+$$
+Let $u=1+t^2$, $du=2tdt$.Then,
+$$
+v_1=-\int\frac{1}{2u}du
+$$
+$$
+v_1=-\frac{ln|1+t^2|}{2}
+$$
+Since, $1+t^2 >0$, so,
+$$
+v_1=-\frac{ln(1+t^2)}{2} \tag{5}
+$$
+From, equation (3),
+$$
+v_2'=\frac{\frac{e^t}{1+t^2}.e^t}{e^{2t}}
+$$
+$$
+v_2'=\frac{1}{1+t^2}
+$$
+$$
+v_2=tan^{-1}(t) \tag{6}
+$$
+Hence, the solution of differential equation (1) is 
+$$
+y=-\frac{ln(1+t^2)}{2}e^t+tan^{-1}(t)te^t+C_1e^t+C_2te^t \tag{7}
+$$
+```{r difference9, echo = F, warning=F, message=F, results = "hide", fig.keep='last', fig.cap = "Plot of $y(t)=[ln(1+t^2)e^t]/2+tan^{-1}(t)te^t+C_1e^t+C_2te^t$", fig.pos = "h"}
+t <- seq(0,5, by=0.1)
+c_1 <- 1
+c_2 <- 0.7
+y <- -log(1+t^2)*exp(t)/2+atan(t)*t*exp(t)+c_1*exp(t)+c_2*t*exp(t)
+df <- data.frame(t=t, y=y)
+caption_text <- bquote(C[1] == .(c_1) ~ "," ~ C[2] == .(c_2))
+
+ggplot(df, aes(x = t, y = y)) +
+  geom_smooth(color = "blue", se = FALSE, linewidth = 1) +
+  geom_vline(aes(xintercept = 0), linetype = "dashed") +
+  geom_hline(aes(yintercept = 0), linetype = "dashed") +
+  labs(caption = caption_text) +
+  theme_minimal()
+```
 
 
 
